@@ -340,6 +340,7 @@ jobs:
     - name: Download package
       run: |
         cd openwrt && make download -j8
+        make defconfig
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
