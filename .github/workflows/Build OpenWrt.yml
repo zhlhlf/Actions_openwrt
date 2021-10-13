@@ -58,7 +58,7 @@ jobs:
 
     - name: 替换config
       if: env.replace == 'true'        
-       run: |
+       run:|
         rm -rf $GITHUB_WORKSPACE/openwrt/.config
         mv $GITHUB_WORKSPACE/$config $GITHUB_WORKSPACE/openwrt/.config           
 
