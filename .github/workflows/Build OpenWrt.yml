@@ -31,14 +31,16 @@ jobs:
         df -hT
 
     - name: 获取源码
-      run: git clone --depth 1 $repo_url -b $repo_branch openwrt
+      run: 
+         git clone --depth 1 $repo_url -b $repo_branch openwrt
+         cd openwrt && ./scripts/feeds update -a      
+         cd openwrt && ./scripts/feeds install -a
 
     - name: 替换config
       if: env.replace == 'true'        
       run: |
         rm -rf $GITHUB_WORKSPACE/openwrt/.config
-        mv $GITHUB_WORKSPACE/.config $GITHUB_WORKSPACE/openwrt/.config           
-        make defconfig
+        mv $GITHUB_WORKSPACE/.config $GITHUB_WORKSPACE/openwrt/.config
 
     - name: Clone extra luci source code
       run: |
@@ -307,10 +309,11 @@ jobs:
         # ========================固件定制部分结束========================
         # 
         sed -i 's/^[ \t]*//g' ./.config
-        make defconfig
+        
 
     - name: 下载软件包
       run: |
+        cd openwrt && make defconfig
         cd openwrt && make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
@@ -318,8 +321,6 @@ jobs:
     - name: 编译
       run: |
         cd openwrt
-        ./scripts/feeds install -a
-        ./scripts/feeds update -a
         echo -e "$(nproc) thread build."
         make -j$(nproc) V=s
 
