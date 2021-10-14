@@ -25,12 +25,12 @@ jobs:
     - name: Checkout
       uses: actions/checkout@master
 
-    - name: Initialization environment
+    - name: 清理环境
       run: |
         docker rmi `docker images -q`
         df -hT
 
-    - name: Clone source code
+    - name: 获取源码
       run: git clone --depth 1 $repo_url -b $repo_branch openwrt
 
     - name: 替换config
@@ -38,6 +38,7 @@ jobs:
       run: |
         rm -rf $GITHUB_WORKSPACE/openwrt/.config
         mv $GITHUB_WORKSPACE/.config $GITHUB_WORKSPACE/openwrt/.config           
+        make defconfig
 
     - name: Clone extra luci source code
       run: |
@@ -46,12 +47,6 @@ jobs:
         git clone https://github.com/Kinodi/luci-theme-atmaterial openwrt/package/luci-theme-atmaterial
         git clone https://github.com/jerrykuku/luci-theme-argon openwrt/package/luci-theme-argon
         git clone https://github.com/Lienol/openwrt-package openwrt/package/openwrt-package
-
-    - name: Update feeds
-      run: cd openwrt && ./scripts/feeds update -a
-
-    - name: Install feeds
-      run: cd openwrt && ./scripts/feeds install -a
 
     - name: Load custom configuration
       if: env.zip == 'true'            
@@ -314,20 +309,21 @@ jobs:
         sed -i 's/^[ \t]*//g' ./.config
         make defconfig
 
-    - name: Download package
+    - name: 下载软件包
       run: |
         cd openwrt && make download -j8
-        make defconfig
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
-    - name: Build
+    - name: 编译
       run: |
         cd openwrt
+        ./scripts/feeds install -a
+        ./scripts/feeds update -a
         echo -e "$(nproc) thread build."
         make -j$(nproc) V=s
 
-    - name: Assemble artifact
+    - name: 移动固件
       run: |
         rm -rf ./zhlhlf/
         mkdir zhlhlf
