@@ -28,13 +28,13 @@ jobs:
     - name: 清理环境
       run: |
         docker rmi `docker images -q`
-        df -hT
 
     - name: 获取源码
       run: 
          git clone --depth 1 $repo_url -b $repo_branch openwrt
          cd openwrt && ./scripts/feeds update -a      
          cd openwrt && ./scripts/feeds install -a
+         df -hT
 
     - name: 替换config
       if: env.replace == 'true'        
@@ -336,4 +336,3 @@ jobs:
       with:
         name: OpenWrt phicomm k2
         path: zhlhlf/
-
