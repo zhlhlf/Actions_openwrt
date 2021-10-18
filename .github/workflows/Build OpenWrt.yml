@@ -11,11 +11,8 @@ env:
   config: PSG1218.config
   model: PSG1218
   TZ: Asia/Shanghai
-  wetransfer: false
-  release: true
-  pack7z: true
-  zip: false
   replace: true
+  ssh: true
 
 jobs:
   build:
@@ -58,6 +55,13 @@ jobs:
 
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
+      
+    - name: SSH connection to Actions
+      if: env.ssh == 'true'            
+      uses: P3TERX/ssh2actions@v1.0.0
+      env:
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}      
 
     - name: Download package
       run: |
