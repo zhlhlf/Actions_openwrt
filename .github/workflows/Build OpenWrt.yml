@@ -12,7 +12,7 @@ env:
   model: PSG1218
   TZ: Asia/Shanghai
   replace: true
-  ssh: true
+  ssh: false
 
 jobs:
   build:
