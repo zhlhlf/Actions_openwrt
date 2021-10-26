@@ -6,7 +6,7 @@ on:
     
 env:
   repo_url: https://github.com/coolsnowwolf/lede
-  repo_branch: master
+  repo_branch: lede-17.01
   repo_os: openwrt
   config: PSG1218.config
   model: PSG1218
