@@ -12,7 +12,7 @@ env:
   model: PSG1218
   TZ: Asia/Shanghai
   replace: true
-  ssh: false
+  ssh: true
 
 jobs:
   build:
@@ -62,6 +62,10 @@ jobs:
       env:
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}      
+
+    - name: SSH connection to Actions
+      uses: P3TERX/debugger-action@master
+      if: env.ssh == 'true'
 
     - name: Download package
       run: |
