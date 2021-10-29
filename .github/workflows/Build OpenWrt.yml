@@ -101,12 +101,12 @@ jobs:
         zip -r $model-$repo_os-by-jczhl.zip zhlhlf
 
     - name: 移动生成包至zhlhlf目录
-       run: |
+      run: |
          mv $model-$repo_os-by-jczhl.* zhlhlf
                               
     - name: 上传zhlhlf目录所有文件至WeTransfer
       if: env.wetransfer == 'true'      
-       run: |
+      run: |
         sudo ./transfer wet zhlhlf/$model-$repo_os-by-jczhl.*
 
     - name: 上传zhlhlf目录所有文件至 release
