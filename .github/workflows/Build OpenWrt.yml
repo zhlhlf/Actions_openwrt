@@ -8,11 +8,11 @@ env:
   repo_url: https://github.com/coolsnowwolf/lede
   repo_branch: master
   repo_os: openwrt
-  config: .config22
+  config: .config
   model: PSG1218
   TZ: Asia/Shanghai
   replace: true
-  ssh: true66
+  ssh: true
 
 jobs:
   build:
