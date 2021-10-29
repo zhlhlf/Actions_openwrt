@@ -97,8 +97,8 @@ jobs:
             
     - name: zip 打包
       if: env.zip == 'true'
-       run: |
-         zip -r $model-$repo_os-by-jczhl.zip zhlhlf
+      run: |
+        zip -r $model-$repo_os-by-jczhl.zip zhlhlf
 
     - name: 移动生成包至zhlhlf目录
        run: |
@@ -115,3 +115,4 @@ jobs:
       with:
         artifacts: zhlhlf/*
         name: openwrt
+
