@@ -57,11 +57,8 @@ jobs:
       run: cd openwrt && ./scripts/feeds install -a
       
     - name: SSH connection to Actions
-      if: env.ssh == 'true'            
-      uses: P3TERX/ssh2actions@v1.0.0
-      env:
-        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}      
+      if: env.ssh == 'true'    
+      uses: P3TERX/debugger-action@master
 
     - name: Download package
       run: |
