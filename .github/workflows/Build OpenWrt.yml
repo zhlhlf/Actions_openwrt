@@ -63,14 +63,11 @@ jobs:
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}      
 
-    - name: SSH connection to Actions
-      uses: P3TERX/debugger-action@master
-      if: env.ssh == 'true'
-
     - name: Download package
       run: |
-        cd openwrt && make download -j8
+        cd openwrt
         make defconfig
+        make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
         
