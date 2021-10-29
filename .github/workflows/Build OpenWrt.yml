@@ -12,7 +12,7 @@ env:
   model: PSG1218
   TZ: Asia/Shanghai
   replace: true
-  ssh: true
+  ssh: true66
 
 jobs:
   build:
@@ -66,7 +66,7 @@ jobs:
     - name: Download package
       run: |
         cd openwrt
-        make defconfig
+#        make defconfig
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
