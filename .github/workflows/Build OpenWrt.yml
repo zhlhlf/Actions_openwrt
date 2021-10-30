@@ -16,7 +16,7 @@ env:
   pack7z: true66
   zip: true 
   replace: true
-  ssh: true66
+  ssh: true
   
 
 jobs:
@@ -79,8 +79,10 @@ jobs:
     - name: 编译
       run: |
         cd openwrt
-        echo -e "$(nproc) thread build."
-        make -j$(nproc) V=s
+        echo -e "$(nproc) thread compile"
+        make -j$(nproc) || make -j1 || make -j1 V=s
+        echo "::set-output name=status::success"
+        
         
     - name: 移动固件至zhlhlf
       run: |
