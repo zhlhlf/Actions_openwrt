@@ -117,3 +117,5 @@ jobs:
       with:
         artifacts: zhlhlf/*.zip
         name: openwrt
+        tag: openwrt-${{ github.run_number }}
+        token: ${{ secrets.GITHUB_TOKEN }}
