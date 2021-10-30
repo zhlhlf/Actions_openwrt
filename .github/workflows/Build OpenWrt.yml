@@ -118,4 +118,7 @@ jobs:
       with:
         artifacts: zhlhlf/$model-$repo_os-by-jczhl.*
         name: openwrt
+        tag: GSI--Android-${{ github.run_number }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+
 
