@@ -115,7 +115,7 @@ jobs:
       if: env.release == 'true'      
       uses: ncipollo/release-action@v1.8.6
       with:
-        artifacts: zhlhlf/$model-$repo_os-by-jczhl.*
+        artifacts: zhlhlf/*.zip
         name: openwrt
         tag: GSI--Android-${{ github.run_number }}
         token: ${{ secrets.GITHUB_TOKEN }}
