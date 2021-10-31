@@ -81,7 +81,7 @@ jobs:
       run: |
         rm -rf ./zhlhlf/
         mkdir zhlhlf
-        find openwrt/ -name ".config" | xargs -i mv -f {} ./zhlhlf
+        mv openwrt/.config ./zhlhlf
         find openwrt/bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./zhlhlf        
         find openwrt/bin/targets/ -name "*sysupgrade*bin*" | xargs -i mv -f {} ./zhlhlf
         
