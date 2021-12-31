@@ -5,7 +5,7 @@ on:
     types: [started]
     
 env:
-  repo_url: https://github.com/coolsnowwolf/lede
+  repo_url: https://github.com/Ameykyl/openwrt18.06
   repo_branch: master
   repo_os: openwrt
   config: .config
