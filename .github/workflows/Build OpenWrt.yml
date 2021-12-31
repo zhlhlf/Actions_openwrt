@@ -5,7 +5,7 @@ on:
     types: [started]
     
 env:
-  repo_url: https://github.com/cnfug/openwrt18.06-old
+  repo_url: https://github.com/purplestarsky/openwrt19
   repo_branch: master
   repo_os: openwrt
   config: .config
