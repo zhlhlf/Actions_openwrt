@@ -9,6 +9,7 @@ env:
   repo_branch: master
   repo_os: openwrt
   config: .config22
+  DIY_P1_SH: diy-part1.sh
   model: PSG1218
   TZ: Asia/Shanghai
   wetransfer: true66
@@ -61,6 +62,12 @@ jobs:
 
     - name: 安装 feeds
       run: cd openwrt && ./scripts/feeds install -a
+
+    - name: 一系列可自定义配置
+      run: |
+        chmod +x $DIY_P1_SH
+        cd openwrt
+        $GITHUB_WORKSPACE/$DIY_P1_SH              
       
     - name: 获取软件包
       run: |
