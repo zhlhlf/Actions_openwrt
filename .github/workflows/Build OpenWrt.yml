@@ -6,7 +6,7 @@ on:
     
 env:
   repo_url: https://github.com/purplestarsky/openwrt19
-  repo_branch: master
+  repo_branch: 20200408
   repo_os: openwrt
   config: .config22
   DIY_P1_SH: diy-part1.sh
