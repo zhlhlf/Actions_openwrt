@@ -12,7 +12,7 @@ env:
   diy_sh: diy.sh
   model: PSG1218
   TZ: Asia/Shanghai
-  set: true
+  set: true66
   wetransfer: true66
   release: true66
   pack7z: true66
