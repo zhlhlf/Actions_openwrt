@@ -111,7 +111,6 @@ jobs:
 
     - name: Upload bin directory
       uses: actions/upload-artifact@master
-      if: steps.compile.outputs.status == 'success'
       with:
         name: openwrt-by-jczhl
         path: zhlhlf
