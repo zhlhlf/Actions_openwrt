@@ -13,7 +13,7 @@ env:
   model: PSG1218
   TZ: Asia/Shanghai
   wetransfer: true66
-  release: true66
+  release: true
   pack7z: true66
   zip: true 
   replace: true
@@ -101,10 +101,6 @@ jobs:
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}      
 
-    - name: Upload firmware to release
-      uses: softprops/action-gh-release@v1
-      files: zhlhlf/*
-                                                            
     - name: 上传zhlhlf目录所有文件至WeTransfer
       if: env.wetransfer == 'true'      
       run: |
