@@ -8,7 +8,7 @@ env:
   repo_url: https://github.com/purplestarsky/openwrt19
   repo_branch: master
   repo_os: openwrt
-  config: .config22
+  config: .config
   DIY_P1_SH: diy-part1.sh
   model: PSG1218
   TZ: Asia/Shanghai
