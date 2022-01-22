@@ -9,9 +9,10 @@ env:
   repo_branch: master
   repo_os: openwrt
   config: .config
-  DIY_P1_SH: diy-part1.sh
+  diy_sh: diy.sh
   model: PSG1218
   TZ: Asia/Shanghai
+  set: true66
   wetransfer: true66
   release: true66
   pack7z: true66
@@ -64,10 +65,11 @@ jobs:
       run: cd openwrt && ./scripts/feeds install -a
 
     - name: 一系列可自定义配置
+      if: env.set == 'true'      
       run: |
-        chmod +x $DIY_P1_SH
+        chmod +x $diy_sh
         cd openwrt
-        $GITHUB_WORKSPACE/$DIY_P1_SH              
+        $GITHUB_WORKSPACE/$diy_sh              
       
     - name: 获取软件包
       run: |
