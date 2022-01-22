@@ -89,6 +89,8 @@ jobs:
       run: |
          rm -rf openwrt/bin/targets/*/*/packages         
          zip -r $model-$repo_os-$repo_branch-by-jczhl.zip openwrt/bin/targets/*/*
+         ls
+         ls zhlhlf
 
     - name: 移动生成包至zhlhlf目录
       run: |
