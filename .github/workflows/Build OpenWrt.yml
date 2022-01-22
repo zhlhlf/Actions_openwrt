@@ -6,13 +6,13 @@ on:
     
 env:
   repo_url: https://github.com/openwrt/openwrt
-  repo_branch: master
+  repo_branch: 20200416
   repo_os: openwrt
   config: .config
   diy_sh: diy.sh
   model: PSG1218
   TZ: Asia/Shanghai
-  set: true66
+  set: true
   wetransfer: true66
   release: true66
   pack7z: true66
