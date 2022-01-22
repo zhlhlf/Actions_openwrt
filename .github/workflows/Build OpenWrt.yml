@@ -103,7 +103,7 @@ jobs:
 
     - name: Upload firmware to release
       uses: softprops/action-gh-release@v1
-        files: zhlhlf/*
+      files: zhlhlf/*
                                                             
     - name: 上传zhlhlf目录所有文件至WeTransfer
       if: env.wetransfer == 'true'      
