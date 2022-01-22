@@ -13,7 +13,7 @@ env:
   model: PSG1218
   TZ: Asia/Shanghai
   wetransfer: true66
-  release: true
+  release: true66
   pack7z: true66
   zip: true 
   replace: true
@@ -83,20 +83,16 @@ jobs:
         echo -e "$(nproc) thread compile"
         make -j$(nproc) || make -j1 || make -j1 V=s
         echo "::set-output name=status::success"
-                
-    - name: 7z 打包
-      if: env.pack7z == 'true'    
-      run: |
-         7z a -r $model-$repo_os-$repo_branch-by-jczhl.7z openwrt/bin/targets/*
-            
+                            
     - name: zip 打包
       if: env.zip == 'true'
       run: |
-         zip -r $model-$repo_os-$repo_branch-by-jczhl.zip openwrt/bin/targets/*
+         rm -rf openwrt/bin/targets/*/*/packages         
+         zip -r $model-$repo_os-$repo_branch-by-jczhl.zip openwrt/bin/targets/*/*
 
     - name: 移动生成包至zhlhlf目录
       run: |
-         mv openwrt/bin/targets/$model-$repo_os-$repo_branch-by-jczhl.* zhlhlf
+         mv $model-$repo_os-$repo_branch-by-jczhl.* zhlhlf
 
     - name: ssh连接
       if: env.ssh == 'true'            
@@ -104,6 +100,10 @@ jobs:
       env:
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}      
+
+    - name: Upload firmware to release
+      uses: softprops/action-gh-release@v1
+        files: zhlhlf/*
                                                             
     - name: 上传zhlhlf目录所有文件至WeTransfer
       if: env.wetransfer == 'true'      
