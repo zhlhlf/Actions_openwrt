@@ -13,7 +13,7 @@ env:
   model: PSG1218
   TZ: Asia/Shanghai
   wetransfer: true66
-  release: true
+  release: true66
   pack7z: true66
   zip: true 
   replace: true
@@ -109,6 +109,13 @@ jobs:
       run: |
         sudo ./transfer wet zhlhlf/$model-$repo_os-$repo_branch-by-jczhl.*
 
+    - name: Upload bin directory
+      uses: actions/upload-artifact@master
+      if: steps.compile.outputs.status == 'success'
+      with:
+        name: openwrt-by-jczhl
+        path: zhlhlf
+        
     - name: 上传zhlhlf目录所有文件至 release
       if: env.release == 'true'      
       uses: ncipollo/release-action@v1.8.6
