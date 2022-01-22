@@ -5,7 +5,7 @@ on:
     types: [started]
     
 env:
-  repo_url: https://github.com/cappiewu/openwrt-k2
+  repo_url: https://github.com/openwrt/openwrt
   repo_branch: master
   repo_os: openwrt
   config: .config
