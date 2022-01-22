@@ -5,14 +5,14 @@ on:
     types: [started]
     
 env:
-  repo_url: https://github.com/openwrt/openwrt
-  repo_branch: master
+  repo_url: https://github.com/coolsnowwolf/lede
+  repo_branch: 20200915
   repo_os: openwrt
   config: .config
   diy_sh: diy.sh
   model: PSG1218
   TZ: Asia/Shanghai
-  set: true66
+  set: true
   wetransfer: true66
   release: true66
   pack7z: true66
@@ -91,10 +91,8 @@ jobs:
       if: env.zip == 'true'
       run: |
          rm -rf openwrt/bin/targets/*/*/packages 
-         cp openwrt/.config openwrt/bin/targets/*/*/*        
+         cp openwrt/.config openwrt/bin/targets/*/*/    
          zip -r $model-$repo_os-$repo_branch-by-jczhl.zip openwrt/bin/targets/*/*/*
-         ls
-         ls zhlhlf
 
     - name: 移动生成包至zhlhlf目录
       run: |
