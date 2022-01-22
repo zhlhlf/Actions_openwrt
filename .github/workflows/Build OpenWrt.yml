@@ -84,7 +84,7 @@ jobs:
       run: |
         cd openwrt
         echo -e "$(nproc) thread compile"
-        make
+        make with -j1 V=s
         echo "::set-output name=status::success"
                             
     - name: zip 打包
