@@ -5,8 +5,8 @@ on:
     types: [started]
     
 env:
-  repo_url: https://github.com/openwrt/openwrt
-  repo_branch: master
+  repo_url: https://github.com/immortalwrt/immortalwrt
+  repo_branch: openwrt-18.06
   repo_os: openwrt
   config: .config
   diy_sh: diy.sh
@@ -18,7 +18,7 @@ env:
   pack7z: true66
   zip: true 
   replace: true
-  ssh: true66
+  ssh: true
   
 
 jobs:
@@ -65,13 +65,6 @@ jobs:
     - name: 安装 feeds
       run: cd openwrt && ./scripts/feeds install -a
 
-    - name: ssh连接
-      if: env.ssh == 'true'            
-      uses: P3TERX/ssh2actions@v1.0.0
-      env:
-        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}      
-
     - name: 一系列可自定义配置
       if: env.set == 'true'      
       run: |
@@ -87,6 +80,13 @@ jobs:
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
+
+    - name: ssh连接
+      if: env.ssh == 'true'            
+      uses: P3TERX/ssh2actions@v1.0.0
+      env:
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}      
         
     - name: 编译
       run: |
