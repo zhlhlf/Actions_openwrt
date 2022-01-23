@@ -12,13 +12,14 @@ env:
   diy_sh: diy.sh
   model: PSG1218
   TZ: Asia/Shanghai
+  newpackage: true66
   set: true66
+  ssh: true66  
+  replace: true
   wetransfer: true66
   release: true66
   pack7z: true66
   zip: true 
-  replace: true
-  ssh: true
   
 
 jobs:
@@ -51,6 +52,7 @@ jobs:
         mv $GITHUB_WORKSPACE/$config $GITHUB_WORKSPACE/openwrt/.config        
            
     - name: 更新源码部分插件包
+      if: env.newpackage == 'true'          
       run: |
         git clone https://github.com/honwen/luci-app-aliddns openwrt/package/luci-app-aliddns
         git clone https://github.com/zxlhhyccc/luci-app-serverchan openwrt/package/luci-app-serverchan
