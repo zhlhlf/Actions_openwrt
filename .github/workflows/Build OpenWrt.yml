@@ -18,7 +18,7 @@ env:
   pack7z: true66
   zip: true 
   replace: true
-  ssh: true
+  ssh: true66
   
 
 jobs:
@@ -56,6 +56,7 @@ jobs:
         git clone https://github.com/zxlhhyccc/luci-app-serverchan openwrt/package/luci-app-serverchan
         git clone https://github.com/Kinodi/luci-theme-atmaterial openwrt/package/luci-theme-atmaterial
         git clone https://github.com/jerrykuku/luci-theme-argon openwrt/package/luci-theme-argon
+        git clone https://github.com/tracemouse/luci-theme-netgear openwrt/package/luci-theme-netgear
         git clone https://github.com/Lienol/openwrt-package openwrt/package/openwrt-package
         
     - name: 更新 feeds
@@ -108,6 +109,7 @@ jobs:
     - name: 上传zhlhlf目录所有文件至WeTransfer
       if: env.wetransfer == 'true'      
       run: |
+        curl -sL https://git.io/file-transfer | sh
         sudo ./transfer wet zhlhlf/$model-$repo_os-$repo_branch-by-jczhl.*
 
     - name: Upload bin directory
