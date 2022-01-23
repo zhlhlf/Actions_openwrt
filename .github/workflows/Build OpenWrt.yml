@@ -18,7 +18,7 @@ env:
   pack7z: true66
   zip: true 
   replace: true
-  ssh: true66
+  ssh: true
   
 
 jobs:
