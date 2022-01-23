@@ -12,7 +12,7 @@ env:
   diy_sh: diy.sh
   model: PSG1218
   TZ: Asia/Shanghai
-  newpackage: true
+  newpackage: true66
   set: true66
   ssh: true66  
   replace: true
@@ -55,7 +55,7 @@ jobs:
       if: env.newpackage == 'true'          
       run: |
         rm -rf $GITHUB_WORKSPACE/openwrt/.feeds.conf.default
-        mv $GITHUB_WORKSPACE/$config $GITHUB_WORKSPACE/openwrt/feeds.conf.default        
+        mv $GITHUB_WORKSPACE/feeds.conf.default $GITHUB_WORKSPACE/openwrt/feeds.conf.default        
         
     - name: 更新 feeds
       run: cd openwrt && ./scripts/feeds update -a
