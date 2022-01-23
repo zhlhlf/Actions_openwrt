@@ -91,7 +91,7 @@ jobs:
       if: env.zip == 'true'
       run: |
          rm -rf openwrt/bin/targets/*/*/packages 
-         cp openwrt/.config openwrt/bin/targets/*/*/    
+         cp openwrt/.config openwrt/bin/targets/*/*/.config    
          zip -r $model-$repo_os-$repo_branch-by-jczhl.zip openwrt/bin/targets/*/*/*
 
     - name: 移动生成包至zhlhlf目录
