@@ -12,7 +12,7 @@ env:
   diy_sh: diy.sh
   model: PSG1218
   TZ: Asia/Shanghai
-  newpackage: true66
+  newpackage: true
   set: true66
   ssh: true66  
   replace: true
