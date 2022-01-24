@@ -5,16 +5,16 @@ on:
     types: [started]
     
 env:
-  repo_url: https://github.com/coolsnowwolf/openwrt
-  repo_branch: v17.01.2
+  repo_url: https://github.com/immortalwrt/immortalwrt
+  repo_branch: openwrt-18.06
   repo_os: openwrt
   config: .config
   diy_sh: diy.sh
   model: PSG1218
   TZ: Asia/Shanghai
-  newpackage: true
+  newpackage: true66
   set: true66
-  ssh: true66  
+  ssh: true
   replace: true
   wetransfer: true66
   release: true66
@@ -55,7 +55,6 @@ jobs:
         git clone https://github.com/Kinodi/luci-theme-atmaterial openwrt/package/luci-theme-atmaterial
         git clone https://github.com/jerrykuku/luci-theme-argon openwrt/package/luci-theme-argon
         git clone https://github.com/Lienol/openwrt-package openwrt/package/openwrt-package
-        git clone https://github.com/tracemouse/luci-theme-netgear openwrt/package/luci-theme-netgear
 
            
     - name: 更新源码部分插件包
@@ -76,7 +75,14 @@ jobs:
         chmod +x $diy_sh
         cd openwrt
         $GITHUB_WORKSPACE/$diy_sh              
-      
+
+    - name: ssh连接
+      if: env.ssh == 'true'            
+      uses: P3TERX/ssh2actions@v1.0.0
+      env:
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}      
+              
     - name: 获取软件包
       run: |
         mkdir zhlhlf
@@ -86,13 +92,6 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
-    - name: ssh连接
-      if: env.ssh == 'true'            
-      uses: P3TERX/ssh2actions@v1.0.0
-      env:
-        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}      
-        
     - name: 编译
       run: |
         cd openwrt
