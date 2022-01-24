@@ -50,6 +50,12 @@ jobs:
       run: |
         rm -rf $GITHUB_WORKSPACE/openwrt/.config
         mv $GITHUB_WORKSPACE/$config $GITHUB_WORKSPACE/openwrt/.config        
+        git clone https://github.com/honwen/luci-app-aliddns openwrt/package/luci-app-aliddns
+        git clone https://github.com/zxlhhyccc/luci-app-serverchan openwrt/package/luci-app-serverchan
+        git clone https://github.com/Kinodi/luci-theme-atmaterial openwrt/package/luci-theme-atmaterial
+        git clone https://github.com/jerrykuku/luci-theme-argon openwrt/package/luci-theme-argon
+        git clone https://github.com/Lienol/openwrt-package openwrt/package/openwrt-package
+
            
     - name: 更新源码部分插件包
       if: env.newpackage == 'true'          
