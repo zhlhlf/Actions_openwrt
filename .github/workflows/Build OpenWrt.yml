@@ -5,8 +5,8 @@ on:
     types: [started]
     
 env:
-  repo_url: https://github.com/openwrt/openwrt
-  repo_branch: master
+  repo_url: https://github.com/immortalwrt/immortalwrt
+  repo_branch: openwrt-18.06
   repo_os: openwrt
   config: .config
   diy_sh: diy.sh
@@ -14,7 +14,7 @@ env:
   TZ: Asia/Shanghai
   newpackage: true66
   set: true66
-  ssh: true
+  ssh: true66
   replace: true
   wetransfer: true66
   release: true66
@@ -50,7 +50,6 @@ jobs:
       run: |
         rm -rf $GITHUB_WORKSPACE/openwrt/.config
         mv $GITHUB_WORKSPACE/$config $GITHUB_WORKSPACE/openwrt/.config        
-        git clone https://github.com/tracemouse/luci-theme-netgear openwrt/package/luci-theme-netgear
            
     - name: 更新源码部分插件包
       if: env.newpackage == 'true'          
@@ -62,7 +61,9 @@ jobs:
       run: cd openwrt && ./scripts/feeds update -a
 
     - name: 安装 feeds
-      run: cd openwrt && ./scripts/feeds install -a
+      run: |
+        cd openwrt && ./scripts/feeds install -a
+        cd openwrt && git clone https://github.com/tracemouse/luci-theme-netgear feeds/luci/themes/luci-theme-netgear
 
     - name: 一系列可自定义配置
       if: env.set == 'true'      
@@ -98,7 +99,7 @@ jobs:
       if: env.zip == 'true'
       run: |
          rm -rf openwrt/bin/targets/*/*/packages 
-         cp openwrt/.config openwrt/bin/targets/*/*/.config    
+         mv openwrt/.config openwrt/bin/targets/*/*/.config    
          zip -r $model-$repo_os-$repo_branch-by-jczhl.zip openwrt/bin/targets/*/*/*
 
     - name: 移动生成包至zhlhlf目录
