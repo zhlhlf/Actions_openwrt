@@ -5,14 +5,14 @@ on:
     types: [started]
     
 env:
-  repo_url: https://github.com/immortalwrt/immortalwrt
-  repo_branch: openwrt-18.06
+  repo_url: https://github.com/coolsnowwolf/openwrt
+  repo_branch: v17.01.2
   repo_os: openwrt
   config: .config
   diy_sh: diy.sh
   model: PSG1218
   TZ: Asia/Shanghai
-  newpackage: true
+  newpackage: true66
   set: true66
   ssh: true66  
   replace: true
