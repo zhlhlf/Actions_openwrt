@@ -5,8 +5,8 @@ on:
     types: [started]
     
 env:
-  repo_url: https://github.com/coolsnowwolf/openwrt
-  repo_branch: lede-17.01
+  repo_url: https://github.com/purplestarsky/openwrt19
+  repo_branch: 20200915
   repo_os: openwrt
   config: .config
   diy_sh: diy.sh
