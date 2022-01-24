@@ -55,6 +55,7 @@ jobs:
         git clone https://github.com/Kinodi/luci-theme-atmaterial openwrt/package/luci-theme-atmaterial
         git clone https://github.com/jerrykuku/luci-theme-argon openwrt/package/luci-theme-argon
         git clone https://github.com/Lienol/openwrt-package openwrt/package/openwrt-package
+        git clone https://github.com/tracemouse/luci-theme-netgear openwrt/package/luci-theme-netgear
 
            
     - name: 更新源码部分插件包
