@@ -5,8 +5,8 @@ on:
     types: [started]
     
 env:
-  repo_url: https://github.com/immortalwrt/immortalwrt
-  repo_branch: openwrt-18.06
+  repo_url: https://github.com/coolsnowwolf/lede
+  repo_branch: master
   repo_os: openwrt
   config: .config
   diy_sh: diy.sh
