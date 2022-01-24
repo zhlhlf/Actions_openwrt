@@ -50,13 +50,13 @@ jobs:
       run: |
         rm -rf $GITHUB_WORKSPACE/openwrt/.config
         mv $GITHUB_WORKSPACE/$config $GITHUB_WORKSPACE/openwrt/.config        
+        git clone https://github.com/tracemouse/luci-theme-netgear openwrt/feeds/luci/themes
            
     - name: 更新源码部分插件包
       if: env.newpackage == 'true'          
       run: |
         rm -rf $GITHUB_WORKSPACE/openwrt/.feeds.conf.default
         mv $GITHUB_WORKSPACE/feeds.conf.default $GITHUB_WORKSPACE/openwrt/feeds.conf.default        
-        git clone https://github.com/tracemouse/luci-theme-netgear openwrt/feeds/luci/themes
         
     - name: 更新 feeds
       run: cd openwrt && ./scripts/feeds update -a
