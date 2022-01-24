@@ -56,7 +56,7 @@ jobs:
       run: |
         rm -rf $GITHUB_WORKSPACE/openwrt/.feeds.conf.default
         mv $GITHUB_WORKSPACE/feeds.conf.default $GITHUB_WORKSPACE/openwrt/feeds.conf.default        
-        git clone https://github.com/tracemouse/luci-theme-netgear feeds/luci/themes
+        git clone https://github.com/tracemouse/luci-theme-netgear openwrt/feeds/luci/themes
         
     - name: 更新 feeds
       run: cd openwrt && ./scripts/feeds update -a
