@@ -63,7 +63,7 @@ jobs:
     - name: 安装 feeds
       run: |
         cd openwrt && ./scripts/feeds install -a
-        cd openwrt && git clone https://github.com/tracemouse/luci-theme-netgear feeds/luci/themes/luci-theme-netgear
+        git clone https://github.com/tracemouse/luci-theme-netgear feeds/luci/themes/luci-theme-netgear
 
     - name: 一系列可自定义配置
       if: env.set == 'true'      
