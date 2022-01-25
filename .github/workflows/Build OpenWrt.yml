@@ -6,7 +6,7 @@ on:
     
 env:
   repo_url: https://github.com/immortalwrt/immortalwrt
-  repo_branch: openwrt-18.06
+  repo_branch: 20200416
   repo_os: openwrt
   config: .config
   diy_sh: diy.sh
@@ -41,7 +41,7 @@ jobs:
     - name: 获取源码
       run: |
         git clone --depth 1 $repo_url -b $repo_branch openwrt
-        unzip by-jczhl.zip -d openwrt/package
+ #       unzip by-jczhl.zip -d openwrt/package
 
     - name: 替换config
       if: env.replace == 'true'        
