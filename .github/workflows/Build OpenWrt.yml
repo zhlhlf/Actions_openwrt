@@ -8,7 +8,7 @@ env:
   repo_url: https://github.com/openwrt/openwrt
   repo_branch: master
   repo_os: openwrt
-  config: .config
+  config: .config22
   diy_sh: diy.sh
   model: PSG1218
   TZ: Asia/Shanghai
