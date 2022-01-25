@@ -13,7 +13,7 @@ env:
   model: PSG1218
   TZ: Asia/Shanghai
   newpackage: true66
-  set: true
+  set: true66
   ssh: true66
   replace: true
   wetransfer: true66
