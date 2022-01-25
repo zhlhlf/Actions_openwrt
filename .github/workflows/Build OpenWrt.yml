@@ -5,8 +5,8 @@ on:
     types: [started]
     
 env:
-  repo_url: https://github.com/purplestarsky/openwrt19
-  repo_branch: 20200416
+  repo_url: https://github.com/openwrt/openwrt
+  repo_branch: master
   repo_os: openwrt
   config: .config
   diy_sh: diy.sh
@@ -14,7 +14,7 @@ env:
   TZ: Asia/Shanghai
   newpackage: true66
   set: true
-  ssh: true66  
+  ssh: true
   replace: true
   wetransfer: true66
   release: true66
@@ -24,7 +24,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout
@@ -33,15 +33,15 @@ jobs:
     - name: 清理环境
       run: |
         docker rmi `docker images -q`
-
     - name: 配置环境
       run: |
         sudo apt-get update
         sudo apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 python2.7 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler g++-multilib antlr3 gperf wget curl swig rsync
-        
+       
     - name: 获取源码
       run: |
         git clone --depth 1 $repo_url -b $repo_branch openwrt
+        unzip by-jczhl.zip -d openwrt/package
 
     - name: 替换config
       if: env.replace == 'true'        
