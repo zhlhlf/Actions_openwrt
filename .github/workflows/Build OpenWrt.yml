@@ -14,7 +14,7 @@ env:
   TZ: Asia/Shanghai
   newpackage: true66
   set: true
-  ssh: true
+  ssh: true66
   replace: true
   wetransfer: true66
   release: true66
