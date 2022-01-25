@@ -5,10 +5,10 @@ on:
     types: [started]
     
 env:
-  repo_url: https://github.com/openwrt/openwrt
-  repo_branch: master
+  repo_url: https://github.com/coolsnowwolf/openwrt
+  repo_branch: lede-17.01
   repo_os: openwrt
-  config: .config22
+  config: .config
   diy_sh: diy.sh
   model: PSG1218
   TZ: Asia/Shanghai
