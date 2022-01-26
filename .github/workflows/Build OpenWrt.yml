@@ -5,8 +5,8 @@ on:
     types: [started]
     
 env:
-  repo_url: https://github.com/coolsnowwolf/openwrt
-  repo_branch: lede-17.01
+  repo_url: https://github.com/lede-project/source
+  repo_branch: v19.07.8
   repo_os: openwrt
   config: .config
   diy_sh: diy.sh
@@ -41,7 +41,7 @@ jobs:
     - name: 获取源码
       run: |
         git clone --depth 1 $repo_url -b $repo_branch openwrt
- #       unzip by-jczhl.zip -d openwrt/package
+        unzip by-jczhl.zip -d openwrt/package
 
     - name: 替换config
       if: env.replace == 'true'        
