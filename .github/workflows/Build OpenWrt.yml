@@ -41,7 +41,7 @@ jobs:
         mv $GITHUB_WORKSPACE/$config $GITHUB_WORKSPACE/openwrt/.config        
 
     - name: 解压by-jczhl.zip
-      if: env.newpath == 'by-jczhl.zip'  ||  if: env.newpath == 'by-jczhl-default-settings.zip'            
+      if: env.newpath == 'by-jczhl.zip' || if: env.newpath == 'by-jczhl-default-settings.zip'            
       run: |
         unzip $newpath -d openwrt/package      
            
