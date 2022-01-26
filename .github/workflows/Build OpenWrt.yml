@@ -6,21 +6,16 @@ on:
     
 env:
   repo_url: https://github.com/immortalwrt/immortalwrt
-  repo_branch: v19.07.8
+  repo_branch: openwrt-18.06
   repo_os: openwrt
   config: .config
   diy_sh: diy.sh
   model: PSG1218
   TZ: Asia/Shanghai
-  newpackage: true
-  set: true
+  newpack: true66
   ssh: true66
-  replace: true
-  wetransfer: true66
-  release: true66
-  pack7z: true66
-  zip: true 
-  
+  set: true
+
 
 jobs:
   build:
@@ -42,6 +37,7 @@ jobs:
       run: |
         git clone --depth 1 $repo_url -b $repo_branch openwrt
         unzip by-jczhl.zip -d openwrt/package
+        unzip by-jczhl-default-settings.zip -d openwrt/package
 
     - name: 替换config
       if: env.replace == 'true'        
@@ -50,7 +46,7 @@ jobs:
         mv $GITHUB_WORKSPACE/$config $GITHUB_WORKSPACE/openwrt/.config        
            
     - name: 更新源码部分插件包
-      if: env.newpackage == 'true'          
+      if: env.newpack == 'true'          
       run: |
         rm -rf $GITHUB_WORKSPACE/openwrt/.feeds.conf.default
         mv $GITHUB_WORKSPACE/feeds.conf.default $GITHUB_WORKSPACE/openwrt/feeds.conf.default        
@@ -92,7 +88,6 @@ jobs:
         echo "::set-output name=status::success"
                             
     - name: zip 打包
-      if: env.zip == 'true'
       run: |
          rm -rf openwrt/bin/targets/*/*/packages 
          mv openwrt/.config zhlhlf/.config    
@@ -102,23 +97,9 @@ jobs:
       run: |
          mv $model-$repo_os-$repo_branch-by-jczhl.* zhlhlf
 
-    - name: 上传zhlhlf目录所有文件至WeTransfer
-      if: env.wetransfer == 'true'      
-      run: |
-        curl -sL https://git.io/file-transfer | sh
-        sudo ./transfer wet zhlhlf/$model-$repo_os-$repo_branch-by-jczhl.*
-
     - name: Upload bin directory
       uses: actions/upload-artifact@master
       with:
         name: openwrt-by-jczhl
         path: zhlhlf
         
-    - name: 上传zhlhlf目录所有文件至 release
-      if: env.release == 'true'      
-      uses: ncipollo/release-action@v1.8.6
-      with:
-        artifacts: zhlhlf/*.zip
-        name: openwrt
-        tag: openwrt-${{ github.run_number }}
-        token: ${{ secrets.GITHUB_TOKEN }}
