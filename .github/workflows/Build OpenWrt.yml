@@ -44,7 +44,7 @@ jobs:
         rm -rf $GITHUB_WORKSPACE/openwrt/.config
         mv $GITHUB_WORKSPACE/$config $GITHUB_WORKSPACE/openwrt/.config        
            
-    - name: 解压插件包
+    - name: 解压by-jczhl.zip
       if: env.newpack == 'true'          
       run: |
         rm -rf $GITHUB_WORKSPACE/openwrt/.feeds.conf.default
