@@ -14,7 +14,7 @@ env:
   TZ: Asia/Shanghai
   newpath: by-jczhl.zip    #  by-jczhl.zip   by-jczhl-default-settings.zip
   newpack: true66
-  ssh: true66
+  ssh: true
   set: true
 
 
