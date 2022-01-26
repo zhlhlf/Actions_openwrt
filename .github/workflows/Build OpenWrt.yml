@@ -12,7 +12,7 @@ env:
   diy_sh: diy.sh
   model: PSG1218
   TZ: Asia/Shanghai
-  newpath: by-66jczhl.zip    #  by-jczhl.zip   by-jczhl-default-settings.zip
+  newpath: by-jczhl.zip    #  by-jczhl.zip   by-jczhl-default-settings.zip
   newpack: true66
   ssh: true
   set: true
