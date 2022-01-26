@@ -5,8 +5,8 @@ on:
     types: [started]
     
 env:
-  repo_url: https://github.com/coolsnowwolf/lede
-  repo_branch: master
+  repo_url: https://github.com/openwrt/openwrt
+  repo_branch: lede-17.01
   repo_os: openwrt
   config: .config
   diy_sh: diy.sh
