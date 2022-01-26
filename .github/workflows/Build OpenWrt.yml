@@ -6,7 +6,7 @@ on:
     
 env:
   repo_url: https://github.com/openwrt/openwrt
-  repo_branch: v19.07.5
+  repo_branch: v19.07.0-rc2
   repo_os: openwrt
   config: .config
   diy_sh: diy.sh
