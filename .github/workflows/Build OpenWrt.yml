@@ -6,7 +6,7 @@ on:
     
 env:
   repo_url: https://github.com/coolsnowwolf/lede
-  repo_branch: openwrt-18.06
+  repo_branch: 20200416
   repo_os: openwrt
   config: .config
   diy_sh: diy.sh
