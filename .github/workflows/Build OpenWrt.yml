@@ -13,7 +13,7 @@ env:
   model: PSG1218
   TZ: Asia/Shanghai
   newpath: by-jczhl-default-settings.zip    #  by-jczhl.zip   by-jczhl-default-settings.zip
-  newpack: true66
+  newpack: true
   ssh: true66
   set: true
 
@@ -40,7 +40,6 @@ jobs:
         unzip $newpath -d openwrt/package
 
     - name: 替换config
-      if: env.replace == 'true'        
       run: |
         rm -rf $GITHUB_WORKSPACE/openwrt/.config
         mv $GITHUB_WORKSPACE/$config $GITHUB_WORKSPACE/openwrt/.config        
