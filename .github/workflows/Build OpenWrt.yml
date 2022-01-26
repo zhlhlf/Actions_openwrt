@@ -5,14 +5,14 @@ on:
     types: [started]
     
 env:
-  repo_url: https://github.com/immortalwrt/immortalwrt
+  repo_url: https://github.com/coolsnowwolf/lede
   repo_branch: master
   repo_os: openwrt
-  config: .config22
+  config: .config
   diy_sh: diy.sh
   model: PSG1218
   TZ: Asia/Shanghai
-  newpath: by-jczhl.zip    #  by-jczhl.zip   by-jczhl-default-settings.zip
+  newpath: by-jczhl66.zip    #  by-jczhl.zip   by-jczhl-default-settings.zip
   newpack: true66
   ssh: true66
   set: true
