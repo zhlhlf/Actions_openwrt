@@ -12,6 +12,7 @@ env:
   diy_sh: diy.sh
   model: PSG1218
   TZ: Asia/Shanghai
+  newpath: by-jczhl-default-settings.zip    #  by-jczhl.zip   by-jczhl-default-settings.zip
   newpack: true66
   ssh: true66
   set: true
@@ -36,8 +37,7 @@ jobs:
     - name: 获取源码
       run: |
         git clone --depth 1 $repo_url -b $repo_branch openwrt
-#        unzip by-jczhl.zip -d openwrt/package
-        unzip by-jczhl-default-settings.zip -d openwrt/package
+        unzip $newpath -d openwrt/package
 
     - name: 替换config
       if: env.replace == 'true'        
