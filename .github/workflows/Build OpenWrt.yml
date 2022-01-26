@@ -5,16 +5,16 @@ on:
     types: [started]
     
 env:
-  repo_url: https://github.com/lede-project/source
-  repo_branch: v19.07.8
+  repo_url: https://github.com/coolsnowwolf/openwrt
+  repo_branch: lede-17.01
   repo_os: openwrt
   config: .config
   diy_sh: diy.sh
   model: PSG1218
   TZ: Asia/Shanghai
-  newpackage: true66
-  set: true66
-  ssh: true
+  newpackage: true
+  set: true
+  ssh: true66
   replace: true
   wetransfer: true66
   release: true66
