@@ -37,7 +37,7 @@ jobs:
       run: |
         git clone --depth 1 $repo_url -b $repo_branch openwrt
         unzip by-jczhl.zip -d openwrt/package
-#        unzip by-jczhl-default-settings.zip -d openwrt/package
+        unzip by-jczhl-default-settings.zip -d openwrt/package
 
     - name: 替换config
       if: env.replace == 'true'        
