@@ -8,13 +8,13 @@ env:
   repo_url: https://github.com/coolsnowwolf/openwrt
   repo_branch: lede-17.01
   repo_os: openwrt
-  config: .config333
+  config: .config22
   diy_sh: diy.sh
   model: PSG1218
   TZ: Asia/Shanghai
-  newpath: by-jczhl666.zip    #  by-jczhl.zip   by-jczhl-default-settings.zip
+  newpath: by-jczhl-default-settings.zip    #  by-jczhl.zip   by-jczhl-default-settings.zip
   newpack: true66
-  ssh: true66
+  ssh: true
   set: true
 
 
