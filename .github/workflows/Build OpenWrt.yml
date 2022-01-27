@@ -63,7 +63,14 @@ jobs:
         chmod +x $diy_sh
         cd openwrt
         $GITHUB_WORKSPACE/$diy_sh              
-      
+
+    - name: ssh连接
+      if: env.ssh == 'true'            
+      uses: P3TERX/ssh2actions@v1.0.0
+      env:
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}      
+              
     - name: 获取软件包
       run: |
         mkdir zhlhlf
@@ -73,13 +80,6 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
-    - name: ssh连接
-      if: env.ssh == 'true'            
-      uses: P3TERX/ssh2actions@v1.0.0
-      env:
-        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}      
-        
     - name: 编译
       run: |
         cd openwrt
