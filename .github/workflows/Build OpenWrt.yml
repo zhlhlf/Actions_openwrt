@@ -6,7 +6,7 @@ on:
     
 env:
   repo_url: https://github.com/lede-project/source
-  repo_branch: openwrt-19.07
+  repo_branch: lede-17.01
   repo_os: openwrt
   config: .config22
   diy_sh: diy.sh
