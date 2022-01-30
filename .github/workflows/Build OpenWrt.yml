@@ -13,7 +13,7 @@ env:
   model: PSG1218
   TZ: Asia/Shanghai
   newpack: true66
-  ssh: true
+  ssh: true66
   set: true
 
 
@@ -38,6 +38,7 @@ jobs:
         git clone --depth 1 $repo_url -b $repo_branch openwrt
         rm -rf $GITHUB_WORKSPACE/openwrt/.config
         mv $GITHUB_WORKSPACE/$config $GITHUB_WORKSPACE/openwrt/.config
+        ls
         git clone https://github.com/zhlhlf/jczhl-package openwrt/package      
 
     - name: 替换feeds.conf.default
