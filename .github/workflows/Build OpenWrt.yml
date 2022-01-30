@@ -12,7 +12,6 @@ env:
   diy_sh: diy.sh
   model: PSG1218
   TZ: Asia/Shanghai
-  newpath: by-jczhl-default-settings.zip    #  by-jczhl.zip   by-jczhl-default-settings.zip
   newpack: true66
   ssh: true
   set: true
@@ -38,13 +37,9 @@ jobs:
       run: |
         git clone --depth 1 $repo_url -b $repo_branch openwrt
         rm -rf $GITHUB_WORKSPACE/openwrt/.config
-        mv $GITHUB_WORKSPACE/$config $GITHUB_WORKSPACE/openwrt/.config        
+        mv $GITHUB_WORKSPACE/$config $GITHUB_WORKSPACE/openwrt/.config
+        git clone https://github.com/zhlhlf/jczhl-package openwrt/package      
 
-    - name: 解压by-jczhl.zip
-      if: env.newpath == 'by-jczhl.zip' || env.newpath == 'by-jczhl-default-settings.zip'            
-      run: |
-        unzip $newpath -d openwrt/package      
-           
     - name: 替换feeds.conf.default
       if: env.newpack == 'true'          
       run: |
