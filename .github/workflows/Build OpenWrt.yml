@@ -8,7 +8,7 @@ env:
   repo_url: https://github.com/coolsnowwolf/lede
   repo_branch: 20200915
   repo_os: openwrt
-  config: .config
+  config: .config22
   diy_sh: diy.sh
   model: wdr6500
   TZ: Asia/Shanghai
