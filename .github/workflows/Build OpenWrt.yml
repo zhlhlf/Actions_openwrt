@@ -10,7 +10,7 @@ env:
   repo_os: openwrt
   config: .config
   diy_sh: diy.sh
-  model: PSG1218
+  model: wdr6500
   TZ: Asia/Shanghai
   newpack: true66
   ssh: true66
