@@ -14,7 +14,7 @@ env:
   TZ: Asia/Shanghai
   newpack: true66
   ssh: true66
-
+  se5: true
 
 jobs:
   build:
