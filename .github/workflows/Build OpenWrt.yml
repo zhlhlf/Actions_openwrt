@@ -5,7 +5,7 @@ on:
     types: [started]
     
 env:
-  repo_url: https://github.com/huah0235/lede-wndr6500
+  repo_url: https://github.com/coolsnowwolf/lede
   repo_branch: master
   repo_os: openwrt
   config: .config
