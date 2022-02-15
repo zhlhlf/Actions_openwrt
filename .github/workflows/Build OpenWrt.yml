@@ -5,12 +5,12 @@ on:
     types: [started]
     
 env:
-  repo_url: https://github.com/coolsnowwolf/openwrt
+  repo_url: https://github.com/lede-project/source
   repo_branch: master
   repo_os: openwrt
   config: .config
   diy_sh: diy.sh
-  model: wdr6500
+  model: hc5861
   TZ: Asia/Shanghai
   newpack: true66
   ssh: true66
