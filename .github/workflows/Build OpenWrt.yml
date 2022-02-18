@@ -10,7 +10,7 @@ env:
   repo_os: openwrt
   config: .config
   diy_sh: diy.sh
-  model: hc5861
+  model: HC5861
   TZ: Asia/Shanghai
   newpack: true66
   ssh: true66
