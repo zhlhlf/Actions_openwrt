@@ -6,13 +6,13 @@ on:
     
 env:
   repo_url: https://github.com/openwrt/openwrt
-  repo_branch: master
+  repo_branch: lede-17.01
   repo_os: openwrt
   config: .config
   diy_sh: diy.sh
   model: HC5861
   TZ: Asia/Shanghai
-  newpack: true6
+  newpack: true
   set: true
 
 jobs:
