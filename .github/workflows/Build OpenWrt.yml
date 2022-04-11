@@ -5,14 +5,14 @@ on:
     types: [started]
     
 env:
-  repo_url: https://github.com/openwrt/openwrt
-  repo_branch: lede-17.01
+  repo_url: https://github.com/openwrt-mirror/openwrt
+  repo_branch: master
   repo_os: openwrt
   config: .config
   diy_sh: diy.sh
   model: HC5861
   TZ: Asia/Shanghai
-  newpack: true
+  newpack: true6
   set: true
 
 jobs:
