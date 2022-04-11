@@ -5,8 +5,8 @@ on:
     types: [started]
     
 env:
-  repo_url: https://github.com/openwrt/openwrt
-  repo_branch: openwrt-18.06
+  repo_url: https://github.com/Lienol/openwrt
+  repo_branch: 19.07
   repo_os: openwrt
   config: .config
   diy_sh: diy.sh
