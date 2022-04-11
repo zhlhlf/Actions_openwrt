@@ -13,7 +13,7 @@ env:
   model: HC5861
   TZ: Asia/Shanghai
   newpack: true
-  set: true
+  set: true6
 
 jobs:
   build:
