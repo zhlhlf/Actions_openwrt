@@ -48,7 +48,7 @@ jobs:
     - name: 配置环境
       run: |
         sudo apt-get update
-        sudo apt-get -y dos2unix 
+        sudo apt-get -y install dos2unix 
        
     - name: 获取源码&替换config
       run: |
