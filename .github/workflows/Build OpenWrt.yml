@@ -63,10 +63,6 @@ jobs:
          ./scripts/feeds update -a
          ./scripts/feeds install -a
          find ./ -maxdepth 3 -type f -iregex ".*\(txt\|sh\)$" -exec dos2unix {} \; -exec chmod +x {} \;
-         
-    - name: 一系列可自定义配置
-      run: |
-        ${{ inputs.diy_sh }}
         
     - name: 获取软件包
       run: |
@@ -78,6 +74,10 @@ jobs:
         #清理垃圾文件
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
+         
+    - name: 一系列可自定义配置
+      run: |
+        ${{ inputs.diy_sh }}
 
     - name: 编译
       run: |
