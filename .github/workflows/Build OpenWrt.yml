@@ -1,31 +1,50 @@
 name: Build OpenWrt
 
-on: 
-  watch:
-    types: [started]
-    
+on:   
+   workflow_dispatch:
+
+    inputs:
+      repo_url:
+        description: 'repo_url'
+        required: true
+        default: 'https://github.com/openwrt/openwrt'
+
+      repo_branch:
+        description: 'repo_branch'
+        required: false
+        default: 'master'
+
+      config:
+        description: 'config'
+        required: false
+        default: '.config'
+
+      diy_sh:
+        description: 'diy_sh'
+        required: false
+        default: 'cd openwrt ; sh ../diy.sh'
+
+      upload:
+        description: '123 tyy2/short_time_files tyy2_crypt'
+        required: false
+        default: ''
+        
 env:
-  repo_url: https://github.com/openwrt/openwrt
-  repo_branch: master
-  repo_os: openwrt
-  config: .config
-  diy_sh: diy.sh
-  model: HC5861
   TZ: Asia/Shanghai
-  newpack: true
-  set: true
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@master
+    - name: 更改交换空间并link构建空间
+      uses: zhlhlf/maximize-build-space@master
+      with:
+          swap-size-mb: 8192
+                      
+    - name: 获取本仓库源码
+      uses: actions/checkout@main
 
-    - name: 清理环境
-      run: |
-        docker rmi `docker images -q`
     - name: 配置环境
       run: |
         sudo apt-get update
@@ -33,17 +52,11 @@ jobs:
        
     - name: 获取源码&替换config
       run: |
-        git clone --depth 1 $repo_url -b $repo_branch openwrt
+        git clone --depth 1 ${{ inputs.repo_url }} -b ${{ inputs.repo_branch }} openwrt
         rm -rf $GITHUB_WORKSPACE/openwrt/.config
-        mv $GITHUB_WORKSPACE/$config $GITHUB_WORKSPACE/openwrt/.config
-        git clone https://github.com/zhlhlf/jczhl-package openwrt/package/jczhl
-
-    - name: 替换feeds.conf.default
-      if: env.newpack == 'true'          
-      run: |
-        rm -rf $GITHUB_WORKSPACE/openwrt/.feeds.conf.default
-        mv $GITHUB_WORKSPACE/feeds.conf.default $GITHUB_WORKSPACE/openwrt/feeds.conf.default        
-        
+        mv ${{ inputs.config }} openwrt/.config
+        # git clone https://github.com/zhlhlf/jczhl-package openwrt/package/jczhl
+ 
     - name: 更新 feeds
       run: cd openwrt && ./scripts/feeds update -a
 
@@ -51,12 +64,9 @@ jobs:
       run: cd openwrt && ./scripts/feeds install -a
 
     - name: 一系列可自定义配置
-      if: env.set == 'true'      
       run: |
-        chmod +x $diy_sh
-        cd openwrt
-        $GITHUB_WORKSPACE/$diy_sh              
-
+        ${{ inputs.diy_sh }}
+        
     - name: 获取软件包
       run: |
         mkdir zhlhlf
@@ -84,10 +94,7 @@ jobs:
       run: |
          mv $model-$repo_os-$repo_branch-by-jczhl.* zhlhlf
 
-    - name: Upload bin directory
-      uses: actions/upload-artifact@master
-      with:
-        name: openwrt-by-jczhl
-        path: zhlhlf
-        
+    - name: upload
+      run: |
+         curl -sL https://raw.githubusercontent.com/zhlhlf/text/refs/heads/main/upload/upload.sh | bash -s "${{ secrets.RCK }}" "${{ inputs.upload }}"
       
