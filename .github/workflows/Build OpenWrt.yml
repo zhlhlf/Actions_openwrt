@@ -14,10 +14,10 @@ on:
         required: false
         default: 'master'
 
-      config:
-        description: 'config'
+      edit_config:
+        description: 'edit config'
         required: false
-        default: '.config'
+        default: 'mv .config openwrt/.config'
 
       diy_sh:
         description: 'diy_sh'
@@ -54,7 +54,7 @@ jobs:
       run: |
         git clone --depth 1 ${{ inputs.repo_url }} -b ${{ inputs.repo_branch }} openwrt
         rm -rf $GITHUB_WORKSPACE/openwrt/.config
-        mv ${{ inputs.config }} openwrt/.config
+        ${{ inputs.edit_config }}
         # git clone https://github.com/zhlhlf/jczhl-package openwrt/package/jczhl
  
     - name: 更新并安装feeds
