@@ -91,6 +91,7 @@ jobs:
     - name: zip 打包
       run: |
          rm -rf openwrt/bin/targets/*/*/packages 
+         find openwrt/bin/targets/*/*
          mv openwrt/.config zhlhlf/.config    
          zip -r openwrt-by-jczhl-$(date +"%Y-%m-%d").zip openwrt/bin/targets/*/*/*
 
