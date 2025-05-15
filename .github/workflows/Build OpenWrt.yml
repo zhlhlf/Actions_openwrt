@@ -12,7 +12,7 @@ on:
       repo_branch:
         description: 'repo_branch'
         required: false
-        default: 'master'
+        default: 'openwrt-24.10'
 
       edit_config:
         description: 'edit config'
