@@ -7,7 +7,7 @@ on:
       repo_url:
         description: 'repo_url'
         required: true
-        default: 'https://github.com/openwrt/openwrt'
+        default: 'https://github.com/immortalwrt/immortalwrt'
 
       repo_branch:
         description: 'repo_branch'
