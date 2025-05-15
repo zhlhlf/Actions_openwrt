@@ -22,7 +22,7 @@ on:
       diy_sh:
         description: 'diy_sh'
         required: false
-        default: 'cd openwrt ; sh ../diy.sh'
+        default: 'sh ../diy.sh'
 
       upload:
         description: '123 tyy2/short_time_files tyy2_crypt'
