@@ -84,16 +84,14 @@ jobs:
       run: |
         cd openwrt
         FORCE_UNSAFE_CONFIGURE=1
-        echo -e "$(nproc) thread compile"
         make -j$(nproc) || make -j1 || make -j1 V=s
-        echo "::set-output name=status::success"
                             
     - name: zip 打包
       run: |
          rm -rf openwrt/bin/targets/*/*/packages 
          find openwrt/bin/targets/*/*
          mv openwrt/.config zhlhlf/.config    
-         zip -r openwrt-by-jczhl-$(date +"%Y-%m-%d").zip openwrt/bin/targets/*/*/*
+         zip -r openwrt-by-jczhl-$(date +"%Y-%m-%d").zip openwrt/bin/targets/*/*
 
     - name: 移动生成包至zhlhlf目录
       run: |
