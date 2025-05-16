@@ -92,11 +92,11 @@ jobs:
          find openwrt/bin/targets/*/*
          mv openwrt/.config zhlhlf/.config    
          zip -r openwrt-by-jczhl-$(date +"%Y-%m-%d").zip openwrt/bin/targets/*/*
+         mkdir 666
+         mv openwrt*.zip 666
 
     - name: upload
       run: |
-         mkdir 666
-         mv openwrt*.zip 666
          curl -sL https://raw.githubusercontent.com/zhlhlf/text/refs/heads/main/upload/upload.sh | bash -s "${{ secrets.RCK }}" "${{ inputs.upload }}"
 
       
