@@ -1,4 +1,4 @@
-name: Build OpenWrt
+name: Build
 
 on:   
    workflow_dispatch:
@@ -12,12 +12,12 @@ on:
       repo_branch:
         description: 'repo_branch'
         required: false
-        default: 'openwrt-24.10'
+        default: 'master'
 
       edit_config:
         description: 'edit config'
         required: false
-        default: 'mv .config openwrt/.config'
+        default: 'ls '
 
       diy_sh:
         description: 'diy_sh'
@@ -88,12 +88,12 @@ jobs:
                             
     - name: zip 打包
       run: |
+         mkdir out_zhlhlf 666
          rm -rf openwrt/bin/targets/*/*/packages 
-         find openwrt/bin/targets/*/*
-         mv openwrt/.config zhlhlf/.config    
-         zip -r openwrt-by-jczhl-$(date +"%Y-%m-%d").zip openwrt/bin/targets/*/*
-         mkdir 666
-         mv openwrt*.zip 666
+         mv openwrt/bin/targets/*/* out_zhlhlf
+         mv openwrt/.config out_zhlhlf/.config    
+         cd out_zhlhlf 
+         zip -r ../666/wrt-jczhl-$(date +"%Y-%m-%d-%H").zip *
 
     - name: upload
       run: |
