@@ -17,12 +17,12 @@ on:
       edit_config:
         description: 'edit config'
         required: false
-        default: 'ls '
+        default: 'mv .config openwrt/.config'
 
       diy_sh:
         description: 'diy_sh'
         required: false
-        default: 'sh ../diy.sh'
+        default: 'ls'
 
       upload:
         description: '123 tyy2/short_time_files tyy2_crypt'
