@@ -24,6 +24,12 @@ on:
         required: false
         default: 'ls'
 
+      ssh:
+        description: 'ssh'
+        required: true
+        default: 'false'
+        type: boolean   
+
       upload:
         description: '123 tyy2/short_time_files tyy2_crypt'
         required: false
@@ -84,6 +90,11 @@ jobs:
         $GITHUB_WORKSPACE/scripts/settings.sh
 
         ${{ inputs.diy_sh }}
+
+    - name: 高级操作
+      if: github.event.inputs.ssh == 'true'
+      run: |
+        curl -SL http://raw.github.com/zhlhlf/text/main/ssh.sh | sudo bash    
 
     - name: 编译
       run: |
