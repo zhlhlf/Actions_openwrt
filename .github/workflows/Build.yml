@@ -22,7 +22,7 @@ on:
       diy_sh:
         description: 'diy_sh'
         required: false
-        default: 'sh ../diy.sh'
+        default: 'ls'
 
       upload:
         description: '123 tyy2/short_time_files tyy2_crypt'
@@ -82,6 +82,8 @@ jobs:
 
         cd ..
         $GITHUB_WORKSPACE/scripts/settings.sh
+
+        ${{ inputs.diy_sh }}
 
     - name: 编译
       run: |
