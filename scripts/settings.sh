@@ -9,7 +9,6 @@ WRT_NAME=ImmortalWrt
 WRT_DATE=$(date +%Y.%m.%d)
 WRT_TARGET=$(grep -oP 'CONFIG_TARGET_\K[^=]+' ./.config)
 WRT_REPO=$(grep -oP 'CONFIG_FEED_\K[^=]+' ./.config)
-WRT_PACKAGE=$(grep -oP 'CONFIG_PACKAGE_\K[^=]+' ./.config)
 
 
 
