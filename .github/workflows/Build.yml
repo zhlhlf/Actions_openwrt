@@ -7,7 +7,7 @@ on:
       repo_url:
         description: 'repo_url'
         required: true
-        default: 'https://github.com/immortalwrt/immortalwrt'
+        default: 'https://github.com/coolsnowwolf/lede'
 
       repo_branch:
         description: 'repo_branch'
@@ -17,7 +17,7 @@ on:
       edit_config:
         description: 'edit config'
         required: false
-        default: 'mv .config openwrt/.config'
+        default: 'mv config/jdcloud_re-ss-01 openwrt/.config'
 
       diy_sh:
         description: 'diy_sh'
@@ -55,14 +55,13 @@ jobs:
         git clone --depth 1 ${{ inputs.repo_url }} -b ${{ inputs.repo_branch }} openwrt
         rm -rf $GITHUB_WORKSPACE/openwrt/.config
         ${{ inputs.edit_config }}
-        # git clone https://github.com/zhlhlf/jczhl-package openwrt/package/jczhl
  
     - name: 更新并安装feeds
       run: |
-         cd openwrt 
-         ./scripts/feeds update -a
-         ./scripts/feeds install -a
-         find ./ -maxdepth 3 -type f -iregex ".*\(txt\|sh\)$" -exec dos2unix {} \; -exec chmod +x {} \;
+        cd openwrt 
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
+        find ./ -maxdepth 3 -type f -iregex ".*\(txt\|sh\)$" -exec dos2unix {} \; -exec chmod +x {} \;
         
     - name: 获取软件包
       run: |
@@ -77,8 +76,12 @@ jobs:
          
     - name: 一系列可自定义配置
       run: |
-        cd openwrt
-        ${{ inputs.diy_sh }}
+        cd ./openwrt/package/
+        $GITHUB_WORKSPACE/scripts/packages.sh
+        $GITHUB_WORKSPACE/scripts/handles.sh
+
+        cd ..
+        $GITHUB_WORKSPACE/scripts/settings.sh
 
     - name: 编译
       run: |
@@ -88,12 +91,18 @@ jobs:
                             
     - name: zip 打包
       run: |
-         mkdir out_zhlhlf 666
-         rm -rf openwrt/bin/targets/*/*/packages 
-         mv openwrt/bin/targets/*/* out_zhlhlf
-         mv openwrt/.config out_zhlhlf/.config    
-         cd out_zhlhlf 
-         zip -r ../666/wrt-jczhl-$(date +"%Y-%m-%d-%H").zip *
+          mkdir out_zhlhlf 666
+
+          echo "WRT_KVER=$(find ./bin/targets/ -type f -name "*.manifest" -exec grep -oP '^kernel - \K[\d\.]+' {} \;)" >> out_zhlhlf/package_info.txt
+          echo "\n\nWRT_LIST=$(find ./bin/targets/ -type f -name "*.manifest" -exec grep -oP '^luci-(app|theme)[^ ]*' {} \; | tr '\n' ' ')" >> out_zhlhlf/package_info.txt
+
+          rm -rf openwrt/bin/targets/*/*/packages 
+          mv openwrt/bin/targets/*/* out_zhlhlf
+          mv openwrt/.config out_zhlhlf/.config
+          cd out_zhlhlf 
+
+          zip -r ../666/wrt-jczhl-$(date +"%Y-%m-%d-%H").zip *
+          cat package_info.txt
 
     - name: upload
       run: |
