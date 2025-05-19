@@ -77,11 +77,11 @@ jobs:
     - name: 一系列可自定义配置
       run: |
         cd ./openwrt/package/
-        $GITHUB_WORKSPACE/scripts/packages.sh
-        $GITHUB_WORKSPACE/scripts/handles.sh
+        . $GITHUB_WORKSPACE/scripts/packages.sh
+        . $GITHUB_WORKSPACE/scripts/handles.sh
 
         cd ..
-        $GITHUB_WORKSPACE/scripts/settings.sh
+        . $GITHUB_WORKSPACE/scripts/settings.sh
 
         ${{ inputs.diy_sh }}
 
